@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comment;
 
 class Article extends Model
 {
@@ -14,4 +15,9 @@ class Article extends Model
         'desc',
         'authorId'
     ];
+
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }

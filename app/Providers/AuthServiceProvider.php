@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Article' => 'App\Policies\ArticleControllerPolicy'
     ];
 
     /**
@@ -27,6 +28,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Gate::before(function(User $user){
+            if($user->role === 'moderator') return true;
+        });
+
+
         Gate::define('comment', function(User $user, Comment $comment){
             if ($user->id === $comment->author_id){
                 return Response::allow();
@@ -34,6 +41,6 @@ class AuthServiceProvider extends ServiceProvider
         });
 
 
-        
+
     }
 }

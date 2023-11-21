@@ -3,17 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>News</title>
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
         <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+ 
     <body>
-
+      
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -45,7 +42,7 @@
         <a class="nav-link" href="/article/create">Create Article<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/contacts">Contact</a>
@@ -65,9 +62,14 @@
         <a class="nav-link disabled">Disabled</a>
       </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="/create" method="get">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      @guest
+        <a href="/create" class="btn btn-outline-success mr-3 my-2 my-sm-0">Registr</a>
+        <a href="/login" class="btn btn-outline-success my-2 my-sm-0">Sign in</a>
+      @endguest
+      @auth
+        <a href="/logout" class="btn btn-outline-success my-2 my-sm-0">Sign out</a>
+      @endauth
     </div>
   </div>
 </nav>

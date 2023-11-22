@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-
 class ArticleController extends Controller
 {
     /**
@@ -19,7 +16,6 @@ class ArticleController extends Controller
         $articles = Article::latest()->paginate(5);
         return view('articles.main', ['articles'=>$articles]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +26,6 @@ class ArticleController extends Controller
         Gate::authorize('create', [self::class]);
         return view('articles.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,7 +47,6 @@ class ArticleController extends Controller
         $article->save();
         return redirect('/article');
     }
-
     /**
      * Display the specified resource.
      *
@@ -64,7 +58,6 @@ class ArticleController extends Controller
         $comments = Comment::where('article_id', $article->id)->latest()->paginate(2);
         return view('articles.show', ['article'=>$article, 'comments'=>$comments]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,6 +66,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        Gate::authorize('update', [self::class, $article]);
         return view('articles.edit', ['article'=>$article]);
     }
 
@@ -97,7 +91,6 @@ class ArticleController extends Controller
         $article->save();
         return redirect()->route('article.show', ['article'=>$article]);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -106,8 +99,9 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        Gate::authorize('delete', [self::class, $article]);
         $comments = Comment::where('article_id', $article->id)->delete();
         $article->delete();
         return redirect('/article');
     }
-}
+}  

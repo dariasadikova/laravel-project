@@ -41,9 +41,11 @@
       <li class="nav-item">
         <a class="nav-link" href="/article/create">Create Article<span class="sr-only">(current)</span></a>
       </li>
+      @can('create')
       <li class="nav-item">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
       </li>
+      @endcan 
       <li class="nav-item">
         <a class="nav-link" href="/contacts">Contact</a>
       </li>

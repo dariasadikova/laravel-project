@@ -6,6 +6,7 @@
     <h5 class="card-title">{{$article->name}}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{{$article->short_desc}}</h6>
     <p class="card-text">{{$article->desc}}</p>
+    @can('update', $article)
     <div class="d-inline-flex gap-1" style="gap: 10px">
         <a href="/article/{{$article->id}}/edit" class="btn btn-primary">Update article</a>
         <form action="/article/{{$article->id}}" method="post">
@@ -14,6 +15,7 @@
             <button class="btn btn-danger" type="submit">Delete</button>
         </form>
     </div>
+    @endcan
   </div>
 </div>
 
